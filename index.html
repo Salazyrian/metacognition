@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>METACOGNITION · тест</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="brand" data-i18n="brand">МЕТАПОЗНАНИЕ</div>
+  <div class="lang-switch" role="group" aria-label="Language">
+    <button class="lang-btn is-active" data-lang="ru">RU</button>
+    <span class="lang-div">/</span>
+    <button class="lang-btn" data-lang="en">EN</button>
+  </div>
+</header>
+
+<main class="stage">
+
+  <!-- ===== INTRO ===== -->
+  <section class="screen screen--intro is-visible" id="screen-intro">
+    <div class="eyebrow" data-i18n="intro_eyebrow">ИНСТРУМЕНТ ИЗМЕРЕНИЯ</div>
+    <h1 class="display" data-i18n="intro_title">Видит ли ваш разум сам себя?</h1>
+
+    <div class="glass def">
+      <p data-i18n="intro_def"></p>
+    </div>
+
+    <div class="how">
+      <span class="how-item" data-i18n="how_1">24 коротких задачи</span>
+      <span class="how-dot">·</span>
+      <span class="how-item" data-i18n="how_2">после каждой — оценка уверенности</span>
+      <span class="how-dot">·</span>
+      <span class="how-item" data-i18n="how_3">имя не нужно</span>
+    </div>
+
+    <button class="cta" id="btn-start" data-i18n="start">Начать</button>
+
+    <p class="fineprint" data-i18n="intro_fine"></p>
+  </section>
+
+  <!-- ===== TEST ===== -->
+  <section class="screen screen--test" id="screen-test">
+    <div class="progress">
+      <span class="progress-count"><span id="trial-now">1</span> / <span id="trial-total">24</span></span>
+      <div class="progress-rail"><div class="progress-fill" id="progress-fill"></div></div>
+    </div>
+
+    <!-- question phase -->
+    <div class="trial-block" id="phase-question">
+      <div class="trial-prompt" id="trial-prompt"></div>
+      <div class="stimulus" id="stimulus"></div>
+      <div class="answer-row" id="answer-row"></div>
+    </div>
+
+    <!-- confidence phase -->
+    <div class="trial-block conf-block" id="phase-confidence" hidden>
+      <div class="conf-q" data-i18n="conf_q">Насколько вы уверены в ответе?</div>
+      <div class="dial" id="conf-dial">
+        <button class="dial-step" data-conf="1"><span class="dial-num">1</span><span class="dial-lab" data-i18n="conf_1">Наугад</span></button>
+        <button class="dial-step" data-conf="2"><span class="dial-num">2</span><span class="dial-lab" data-i18n="conf_2">Сомневаюсь</span></button>
+        <button class="dial-step" data-conf="3"><span class="dial-num">3</span><span class="dial-lab" data-i18n="conf_3">Скорее уверен</span></button>
+        <button class="dial-step" data-conf="4"><span class="dial-num">4</span><span class="dial-lab" data-i18n="conf_4">Уверен</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COMPUTING ===== -->
+  <section class="screen screen--compute" id="screen-compute">
+    <div class="compute-ring"></div>
+    <div class="compute-text" data-i18n="computing">Сопоставляю уверенность и точность…</div>
+  </section>
+
+  <!-- ===== RESULT ===== -->
+  <section class="screen screen--result" id="screen-result">
+    <div class="verdict-instrument" id="verdict-instrument">
+      <div class="verdict-mark" id="verdict-mark"></div>
+    </div>
+    <div class="verdict-label" id="verdict-label"></div>
+    <h2 class="verdict-title display" id="verdict-title"></h2>
+    <div class="glass verdict-body" id="verdict-body"></div>
+
+    <!-- live community stat -->
+    <div class="stat" id="stat-block">
+      <div class="stat-head" data-i18n="stat_head">СРЕДИ ВСЕХ, КТО ПРОШЁЛ</div>
+      <div class="stat-bar">
+        <div class="stat-seg stat-seg--yes" id="seg-yes"><span id="pct-yes">0%</span></div>
+        <div class="stat-seg stat-seg--no" id="seg-no"><span id="pct-no">0%</span></div>
+      </div>
+      <div class="stat-legend">
+        <span><i class="dot-yes"></i><span data-i18n="legend_yes">обнаружено</span></span>
+        <span><i class="dot-no"></i><span data-i18n="legend_no">не обнаружено</span></span>
+        <span class="stat-n" id="stat-n"></span>
+      </div>
+      <div class="stat-scope" id="stat-scope" data-i18n="stat_local">статистика этого устройства</div>
+    </div>
+
+    <div class="metrics" id="metrics"></div>
+
+    <button class="cta cta--ghost" id="btn-again" data-i18n="again">Пройти заново</button>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <span data-i18n="foot">Упрощённая оценка метакогнитивной чувствительности (гамма-корреляция уверенности и точности). Не диагностический инструмент.</span>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
