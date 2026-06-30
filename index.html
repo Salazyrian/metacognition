@@ -33,7 +33,7 @@
     </div>
 
     <div class="how">
-      <span class="how-item" data-i18n="how_1">24 коротких задачи</span>
+      <span class="how-item" data-i18n="how_1">36 коротких задач</span>
       <span class="how-dot">·</span>
       <span class="how-item" data-i18n="how_2">после каждой — оценка уверенности</span>
       <span class="how-dot">·</span>
@@ -48,7 +48,7 @@
   <!-- ===== TEST ===== -->
   <section class="screen screen--test" id="screen-test">
     <div class="progress">
-      <span class="progress-count"><span id="trial-now">1</span> / <span id="trial-total">24</span></span>
+      <span class="progress-count"><span id="trial-now">1</span> / <span id="trial-total">36</span></span>
       <div class="progress-rail"><div class="progress-fill" id="progress-fill"></div></div>
     </div>
 
@@ -82,26 +82,13 @@
     <div class="verdict-instrument" id="verdict-instrument">
       <div class="verdict-mark" id="verdict-mark"></div>
     </div>
+    <div class="verdict-badge" id="verdict-badge" hidden></div>
     <div class="verdict-label" id="verdict-label"></div>
     <h2 class="verdict-title display" id="verdict-title"></h2>
     <div class="glass verdict-body" id="verdict-body"></div>
 
-    <!-- live community stat -->
-    <div class="stat" id="stat-block">
-      <div class="stat-head" data-i18n="stat_head">СРЕДИ ВСЕХ, КТО ПРОШЁЛ</div>
-      <div class="stat-bar">
-        <div class="stat-seg stat-seg--yes" id="seg-yes"><span id="pct-yes">0%</span></div>
-        <div class="stat-seg stat-seg--no" id="seg-no"><span id="pct-no">0%</span></div>
-      </div>
-      <div class="stat-legend">
-        <span><i class="dot-yes"></i><span data-i18n="legend_yes">обнаружено</span></span>
-        <span><i class="dot-no"></i><span data-i18n="legend_no">не обнаружено</span></span>
-        <span class="stat-n" id="stat-n"></span>
-      </div>
-      <div class="stat-scope" id="stat-scope" data-i18n="stat_local">статистика этого устройства</div>
-    </div>
-
     <div class="metrics" id="metrics"></div>
+    <div class="metric-chance" id="metric-chance"></div>
 
     <button class="cta cta--ghost" id="btn-again" data-i18n="again">Пройти заново</button>
   </section>
