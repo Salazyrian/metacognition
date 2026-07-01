@@ -9,8 +9,8 @@
    ============================================================ */
 
 /* ---------- CONFIG ---------- */
-const N_TRIALS    = 36;     // 18 dots + 18 lines, interleaved
-const FLASH_MS    = 700;    // dot exposure (too short to count)
+const N_TRIALS    = 40;     // 20 dots + 20 lines, interleaved
+const FLASH_MS    = { dots:600, lines:550 };  // both types flashed
 const AUC_BAR     = 0.60;   // detected if type-2 AUC >= this
 const AUC_STRONG  = 0.72;   // top-range badge
 const AUC_MARGIN  = 0.06;   // borderline band around the bar
@@ -109,8 +109,8 @@ let LANG="ru";
 // (smaller delta = harder). Big step until the first reversals so it
 // reaches threshold fast within a short run, then fine step. Per task.
 const STAIR0 = {
-  dots:  { delta:9,  step:2, bigStep:4,  min:2, max:24,  run:0, rev:0, lastDir:0 },
-  lines: { delta:40, step:5, bigStep:12, min:3, max:120, run:0, rev:0, lastDir:0 }
+  dots:  { delta:6,  step:1, bigStep:3, min:1, max:18, run:0, rev:0, lastDir:0 },
+  lines: { delta:22, step:2, bigStep:8, min:2, max:80, run:0, rev:0, lastDir:0 }
 };
 let stair = structuredClone(STAIR0);
 function stepStaircase(type, correct){
@@ -206,13 +206,14 @@ function renderTrial(){
     const fL=makeDotField(tr.left), fR=makeDotField(tr.right);
     wrap.append(fL,fR); stim.append(wrap);
     buildAnswers(ans,[["left",t("a_left")],["right",t("a_right")]],tr.correct);
-    flashThenHide([fL,fR],ans);
+    flashThenHide([fL,fR],ans,"dots");
   } else {
     prompt.textContent=t("p_lines");
     const field=document.createElement("div"); field.className="line-field";
     field.append(makeLineRow("A",tr.A),makeLineRow("B",tr.B));
     stim.append(field);
     buildAnswers(ans,[["A",t("a_A")],["B",t("a_B")]],tr.correct);
+    flashThenHide([field],ans,"lines");
   }
 }
 
@@ -235,12 +236,12 @@ function makeLineRow(key,len){
   const bar=document.createElement("div"); bar.className="line-bar"; bar.style.width=len+"px";
   row.append(k,bar); return row;
 }
-function flashThenHide(fields,ans){
+function flashThenHide(fields,ans,type){
   ans.querySelectorAll(".ans").forEach(b=>b.disabled=true);
   setTimeout(()=>{
-    fields.forEach(f=>f.querySelectorAll(".pip").forEach(p=>p.style.opacity="0"));
+    fields.forEach(f=>f.querySelectorAll(".pip,.line-bar").forEach(el=>el.style.opacity="0"));
     ans.querySelectorAll(".ans").forEach(b=>b.disabled=false);
-  },FLASH_MS);
+  },FLASH_MS[type]);
 }
 function buildAnswers(container,pairs,correctVal){
   pairs.forEach(([val,label])=>{
